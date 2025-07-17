@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
+from fastapi.staticfiles import StaticFiles
 from config.swagger_config import swagger_openapi
-from api.math_router import router as math_router   
+from api.math_router import router as math_router
+from pathlib import Path
 
 app = FastAPI()
 app.openapi = swagger_openapi(app)
@@ -11,4 +13,8 @@ app.openapi = swagger_openapi(app)
 def root():
     return RedirectResponse(url="/docs")
 
+static_dir = Path(__file__).parent / "static"
+app.mount("/ui", StaticFiles(directory=static_dir, html=True), name="ui")
+
+# include your math routes
 app.include_router(math_router)
