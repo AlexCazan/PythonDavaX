@@ -8,6 +8,12 @@ from pathlib import Path
 app = FastAPI()
 app.openapi = swagger_openapi(app)
 
+from repository.db_repository import init_db
+
+# Initialize database tables
+init_db()
+
+
 static_dir = Path(__file__).parent / "static"
 app.mount("/ui", StaticFiles(directory=static_dir, html=True), name="ui")
 

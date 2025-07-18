@@ -1,3 +1,4 @@
+from Project.repository.db_repository import MathRequest, SessionLocal
 from .calculator import Calculator
 
 class MathService:
@@ -19,3 +20,22 @@ class MathService:
         except KeyError as exc:
             raise ValueError(f"Unknown operation '{op}'") from exc
         return func(**params)
+
+ # Persist the request
+        cls._save_to_db(op, params, result)
+
+        return result
+
+    @staticmethod
+    def _save_to_db(op: str, params: dict, result: float):
+        session = SessionLocal()
+        try:
+            entry = MathRequest(
+                operation=op,
+                parameters=str(params),
+                result=result,
+            )
+            session.add(entry)
+            session.commit()
+        finally:
+            session.close()
