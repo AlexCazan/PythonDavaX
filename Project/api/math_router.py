@@ -1,22 +1,17 @@
-# app/routers/math_router.py
 
 from typing import Annotated
 from fastapi import APIRouter, HTTPException, Path
 from pydantic import BaseModel, Field
 
-from f import MathService  # adjust import if you move f.py into a package
+from services.math_service import MathService
 
 router = APIRouter(prefix="/math", tags=["math"])
 
-
-# --- Request schemas -------------------------------------------------------
 
 class PowBody(BaseModel):
     base: float = Field(..., example=2)
     exponent: float = Field(..., example=8)
 
-
-# --- Parameter types via Annotated + Path ----------------------------------
 
 # Fibonacci index:  0 ≤ n ≤ 10 000
 FibPath = Annotated[
@@ -40,8 +35,8 @@ FactPath = Annotated[
     ),
 ]
 
-
 # --- Endpoints --------------------------------------------------------------
+
 
 @router.post(
     "/pow",
