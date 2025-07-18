@@ -1,5 +1,3 @@
-/* static/styles.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 * {
@@ -10,43 +8,101 @@ body {
   font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  background: #f4f6f9;
-  color: #333;
+  background: #f9fafb;
+  color: #1f2937;
+  line-height: 1.6;
 }
 
 .container {
-  max-width: 600px;
+  max-width: 960px;
   margin: 3rem auto;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  padding: 2rem;
+  padding: 1rem;
+  text-align: center;
 }
 
 h1 {
   font-size: 2rem;
   font-weight: 700;
-  text-align: center;
   color: #1f2937;
-}
-
-.note {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin-bottom: 1rem;
-}
-
-section {
-  margin-top: 2rem;
-}
-
-h2 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #111827;
   margin-bottom: 0.5rem;
 }
 
+.note {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+/* Flex layout for cards */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Shared card base */
+section {
+  flex: 1 1 280px;
+  max-width: 300px;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  background: #ffffff;
+  position: relative;
+}
+
+/* CARD THEMES */
+
+section.power {
+  border-top: 5px solid #facc15;
+}
+
+section.fibonacci {
+  border-top: 5px solid #f87171;
+}
+
+section.factorial {
+  border-top: 5px solid #60a5fa;
+}
+
+/* Headings with colored icons */
+h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+h2::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.power h2::before {
+  background: #fde68a url('https://img.icons8.com/emoji/48/000000/high-voltage.png');
+}
+
+.fibonacci h2::before {
+  background: #fecaca url('https://img.icons8.com/emoji/48/000000/spiral-calendar.png');
+}
+
+.factorial h2::before {
+  background: #bfdbfe url('https://img.icons8.com/emoji/48/000000/information.png');
+}
+
+/* Input group */
 .input-group {
   display: flex;
   flex-direction: column;
@@ -55,41 +111,84 @@ h2 {
 
 .input-group label {
   font-weight: 500;
-  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 0.35rem;
 }
 
 .input-group input {
+  width: 100%;
   padding: 0.5rem 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
   font-size: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #f9fafb;
+  transition: border 0.2s ease;
 }
 
 .input-group input:focus {
   outline: none;
   border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.error-msg {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: -0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* BUTTONS themed by card */
+
+.power .btn {
+  background: #facc15;
+  color: #1f1f1f;
+}
+
+.power .btn:hover {
+  background: #eab308;
+}
+
+.fibonacci .btn {
+  background: #f87171;
+  color: #fff;
+}
+
+.fibonacci .btn:hover {
+  background: #ef4444;
+}
+
+.factorial .btn {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.factorial .btn:hover {
+  background: #2563eb;
 }
 
 .btn {
-  display: inline-block;
-  padding: 0.5rem 1rem;
+  width: 100%;
+  display: block;
+  padding: 0.55rem 1.2rem;
   font-size: 1rem;
   font-weight: 600;
-  color: #fff;
-  background: #3b82f6;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
-.btn:hover {
-  background: #2563eb;
-}
-
 .result {
   margin-top: 0.75rem;
-  font-weight: 600;
-  color: #1d4ed8;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #111827;
+  text-align: left;
+}
+
+.single-center {
+  display: flex;
+  justify-content: center;
 }

@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Math-Service Demo UI</title>
-  <!-- link out to our stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,42 +13,49 @@
       Insert values for each operation and click Calculate to see the result.
     </p>
 
-    <!-- Power -->
-    <section>
-      <h2>Power (x<sup>y</sup>)</h2>
-      <div class="input-group">
-        <label for="pow-base">Base</label>
-        <input id="pow-base" type="number" placeholder="Insert base value here" value="">
-      </div>
-      <div class="input-group">
-        <label for="pow-exp">Exponent</label>
-        <input id="pow-exp" type="number" placeholder="Insert exponent value here" value="">
-      </div>
-      <button class="btn" onclick="callPow()">Calculate</button>
-      <div id="pow-res" class="result"></div>
-    </section>
+    <!-- Top row: Power and Fibonacci -->
+    <div class="card-grid">
+      <!-- Power -->
+      <section class="power">
+        <h2>Power (x<sup>y</sup>)</h2>
+        <div class="input-group">
+          <label for="pow-base">Base</label>
+          <input id="pow-base" type="number" placeholder="Insert base value here">
+        </div>
+        <div class="input-group">
+          <label for="pow-exp">Exponent</label>
+          <input id="pow-exp" type="number" placeholder="Insert exponent value here">
+        </div>
+        <button class="btn" onclick="callPow()">Calculate</button>
+        <div id="pow-res" class="result"></div>
+      </section>
 
-    <!-- Fibonacci -->
-    <section>
-      <h2>Fibonacci (n<sup>th</sup>)</h2>
-      <div class="input-group">
-        <label for="fib-n">n</label>
-        <input id="fib-n" type="number" placeholder="Insert n value here" value="">
-      </div>
-      <button class="btn" onclick="callFib()">Calculate</button>
-      <div id="fib-res" class="result"></div>
-    </section>
+      <!-- Fibonacci -->
+      <section class="fibonacci">
+        <h2>Fibonacci (n<sup>th</sup>)</h2>
+        <div class="input-group">
+          <label for="fib-n">n</label>
+          <input id="fib-n" type="number" placeholder="Insert n value here">
+        </div>
+        <p id="fib-error" class="error-msg"></p>
+        <button class="btn" onclick="callFib()">Calculate</button>
+        <div id="fib-res" class="result"></div>
+      </section>
+    </div>
 
-    <!-- Factorial -->
-    <section>
-      <h2>Factorial (n!)</h2>
-      <div class="input-group">
-        <label for="fac-n">n</label>
-        <input id="fac-n" type="number" placeholder="Insert n value here" value="">
-      </div>
-      <button class="btn" onclick="callFac()">Calculate</button>
-      <div id="fac-res" class="result"></div>
-    </section>
+    <!-- Bottom row: Factorial, centered -->
+    <div class="card-grid single-center">
+      <section class="factorial">
+        <h2>Factorial (n!)</h2>
+        <div class="input-group">
+          <label for="fac-n">n</label>
+          <input id="fac-n" type="number" placeholder="Insert n value here">
+        </div>
+        <p id="fac-error" class="error-msg"></p>
+        <button class="btn" onclick="callFac()">Calculate</button>
+        <div id="fac-res" class="result"></div>
+      </section>
+    </div>
   </div>
 
   <script src="index.js"></script>
