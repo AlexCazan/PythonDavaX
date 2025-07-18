@@ -30,13 +30,13 @@ class Calculator:
         a, b = 0, 1
         for _ in range(2, n + 1):
             a, b = b, a + b
-        return b                   # O(n) loop – perfectly fine for homework
+        return b                  
 
     @staticmethod
     def factorial(n: int) -> int:
         if n < 0:
             raise ValueError("Factorial is undefined for negative integers")
-        if n > 100_000:            # simple DoS guard
+        if n > 100_000:            # Arbitrary limit to prevent excessive computation
             raise ValueError("Input too large")
         return _factorial(n)
 
