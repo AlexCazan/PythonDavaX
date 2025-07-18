@@ -8,13 +8,13 @@ from pathlib import Path
 app = FastAPI()
 app.openapi = swagger_openapi(app)
 
+static_dir = Path(__file__).parent / "static"
+app.mount("/ui", StaticFiles(directory=static_dir, html=True), name="ui")
+
 # Redirect root to Swagger UI
 @app.get("/", include_in_schema=False)
 def root():
-    return RedirectResponse(url="/docs")
-
-static_dir = Path(__file__).parent / "static"
-app.mount("/ui", StaticFiles(directory=static_dir, html=True), name="ui")
+    return RedirectResponse(url="/ui")
 
 # include your math routes
 app.include_router(math_router)
