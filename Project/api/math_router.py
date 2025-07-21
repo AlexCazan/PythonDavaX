@@ -1,5 +1,6 @@
 
 from typing import Annotated
+import anyio
 from fastapi import APIRouter, HTTPException, Path
 from pydantic import BaseModel, Field
 
@@ -43,12 +44,17 @@ FactPath = Annotated[
     summary="Compute base^exponent",
     response_model=dict[str, float],
 )
-def calculate_pow(body: PowBody):
+async def calculate_pow(body: PowBody):
     try:
-        result = MathService.execute("pow", base=body.base, exp=body.exponent)
+        result = await anyio.to_thread.run_sync(
+            lambda : MathService.execute("pow",
+            base=body.base,
+            exp=body.exponent)
+            )
     except ValueError as e:
         # invalid base/exponent combination
         raise HTTPException(status_code=400, detail=str(e))
+    print(result)
     return {"result": result}
 
 
@@ -57,9 +63,11 @@ def calculate_pow(body: PowBody):
     summary="Get nᵗʰ Fibonacci number",
     response_model=dict[str, int],
 )
-def get_fib(n: FibPath):
+async def get_fib(n: FibPath):
     try:
-        result = MathService.execute("fib", n=n)
+        result = await anyio.to_thread.run_sync(
+            lambda : MathService.execute("fib", n=n)
+            )
     except ValueError as e:
         # e.g. negative n
         raise HTTPException(status_code=400, detail=str(e))
@@ -71,9 +79,11 @@ def get_fib(n: FibPath):
     summary="Get n! (factorial)",
     response_model=dict[str, int],
 )
-def get_fact(n: FactPath):
+async def get_fact(n: FactPath):
     try:
-        result = MathService.execute("factorial", n=n)
+        result = await anyio.to_thread.run_sync(
+            lambda : MathService.execute("factorial", n=n)
+            )
     except ValueError as e:
         # e.g. n too large
         raise HTTPException(status_code=400, detail=str(e))

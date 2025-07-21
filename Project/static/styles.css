@@ -74,7 +74,6 @@ h2 {
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
@@ -191,4 +190,12 @@ h2::before {
 .single-center {
   display: flex;
   justify-content: center;
+}
+
+.fibonacci h2 sup,
+.power   h2 sup {
+  position: relative;
+  top: -0.3em;       
+  font-size: 0.75em; 
+  margin-left: 0.1em;
 }
