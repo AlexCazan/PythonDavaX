@@ -1,4 +1,5 @@
-from Project.repository.db_repository import MathRequest, SessionLocal
+import json
+from repository.db_repository import MathRequest, SessionLocal
 from .calculator import Calculator
 
 class MathService:
@@ -19,7 +20,10 @@ class MathService:
             func = cls._ops[op]
         except KeyError as exc:
             raise ValueError(f"Unknown operation '{op}'") from exc
-        return func(**params)
+        
+        result = func(**params)
+        cls._save_to_db(op,params,result)
+        return result
 
  # Persist the request
         cls._save_to_db(op, params, result)
@@ -32,7 +36,7 @@ class MathService:
         try:
             entry = MathRequest(
                 operation=op,
-                parameters=str(params),
+                parameters=json.dumps(params),
                 result=result,
             )
             session.add(entry)

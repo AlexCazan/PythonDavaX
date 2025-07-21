@@ -14,7 +14,7 @@ class MathRequest(Base):
     operation = Column(String, nullable=False)     # e.g. "pow"
     parameters = Column(String, nullable=False)    # e.g. "{'base': 2, 'exp': 3}"
     result = Column(Float, nullable=False)         # e.g. 8.0
-    timestamp = Column(DateTime, default=datetime.utcnow)
+    timestamp = Column(DateTime, default=datetime.now)
 
 # SQLite database file
 DATABASE_URL = "sqlite:///math.db"
