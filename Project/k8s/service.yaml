@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pythondavax-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: pythondavax
+  ports:
+  - port: 80
+    targetPort: 8010

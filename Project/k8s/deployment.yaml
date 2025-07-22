@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pythondavax-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pythondavax
+  template:
+    metadata:
+      labels:
+        app: pythondavax
+    spec:
+      containers:
+      - name: pythondavax
+        image: gcr.io/secure-electron-465406-m2/pythondavax:latest
+        ports:
+        - containerPort: 8010
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8010
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8010
+          initialDelaySeconds: 15
+          periodSeconds: 20

@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pythondavax-ingress
+  annotations:
+    kubernetes.io/ingress.class: “gce”
+    # For TLS, you’d add cert-manager annotations or GKE-managed certs here
+spec:
+  rules:
+  - host: pythondavax.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: pythondavax-svc
+            port:
+              number: 80
