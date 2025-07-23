@@ -2,6 +2,7 @@ import json
 from repository.db_repository import MathRequest, SessionLocal
 from .calculator import Calculator
 
+
 class MathService:
     """
     Micro‑façade that external layers (FastAPI, CLI, tests) can call.
@@ -20,14 +21,9 @@ class MathService:
             func = cls._ops[op]
         except KeyError as exc:
             raise ValueError(f"Unknown operation '{op}'") from exc
-        
+
         result = func(**params)
-        cls._save_to_db(op,params,result)
-        return result
-
- # Persist the request
         cls._save_to_db(op, params, result)
-
         return result
 
     @staticmethod

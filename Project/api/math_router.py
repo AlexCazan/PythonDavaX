@@ -47,10 +47,10 @@ FactPath = Annotated[
 async def calculate_pow(body: PowBody):
     try:
         result = await anyio.to_thread.run_sync(
-            lambda : MathService.execute("pow",
-            base=body.base,
-            exp=body.exponent)
-            )
+            lambda: MathService.execute("pow",
+                                        base=body.base,
+                                        exp=body.exponent)
+        )
     except ValueError as e:
         # invalid base/exponent combination
         raise HTTPException(status_code=400, detail=str(e))
@@ -66,8 +66,8 @@ async def calculate_pow(body: PowBody):
 async def get_fib(n: FibPath):
     try:
         result = await anyio.to_thread.run_sync(
-            lambda : MathService.execute("fib", n=n)
-            )
+            lambda: MathService.execute("fib", n=n)
+        )
     except ValueError as e:
         # e.g. negative n
         raise HTTPException(status_code=400, detail=str(e))
@@ -82,8 +82,8 @@ async def get_fib(n: FibPath):
 async def get_fact(n: FactPath):
     try:
         result = await anyio.to_thread.run_sync(
-            lambda : MathService.execute("factorial", n=n)
-            )
+            lambda: MathService.execute("factorial", n=n)
+        )
     except ValueError as e:
         # e.g. n too large
         raise HTTPException(status_code=400, detail=str(e))
