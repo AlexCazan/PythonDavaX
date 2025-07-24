@@ -1,6 +1,6 @@
 # PythonDavaX
 DavaX python homework
-
+```
 Overview
 The Math-Service API is a lightweight FastAPI application that exposes common mathematical operations (power, Fibonacci sequence, factorial) through a RESTful interface. The project includes:
     - A clean API layer built with FastAPI
