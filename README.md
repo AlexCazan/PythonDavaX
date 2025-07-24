@@ -11,7 +11,7 @@ The Math-Service API is a lightweight FastAPI application that exposes common ma
     - Dockerfile for containerization
     - Kubernetes manifests for deployment
 
-Architecture
+``` Architecture
 +-----------------+      +------------------+      +---------------+
 |   Client (UI)   | <--> | FastAPI Endpoints| <--> | MathService   |
 |  (index.html)   |      +------------------+      +---------------+
@@ -20,7 +20,7 @@ Architecture
                              +--------------+      +-----------+
                              | Repository   |      | Calculator|
                              | (SQLite DB)  |      | Library   |
-                             +--------------+      +-----------+
+                             +--------------+      +-----------+ ```
 
 Project Structure
 Project/
