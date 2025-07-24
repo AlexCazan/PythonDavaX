@@ -16,7 +16,7 @@ Architecture
 |   Client (UI)   | <--> | FastAPI Endpoints| <--> | MathService   |
 |  (index.html)   |      +------------------+      +---------------+
 +-----------------+               |                     |
-                                   v                     v
+                                  v                     v
                              +--------------+      +-----------+
                              | Repository   |      | Calculator|
                              | (SQLite DB)  |      | Library   |
