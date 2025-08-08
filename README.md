@@ -118,7 +118,11 @@ Ingress Manifest
     Exposes the service at pythondavax.com
     Uses GCE Ingress controller via annotation kubernetes.io/ingress.class: "gce"
     TLS and cert-manager annotations can be added as needed
+    Also, the pythondavax.com needs to be a domain in order to be accessed. See the website access rubric for accessing the application.
 
 Logging & Monitoring
     Application logs are printed to stdout (captured by Kubernetes/GKE logging stack)
     Add Prometheus or Cloud Monitoring instrumentation as needed
+
+Website Access
+    The application can be accessed and tested on the specific url: http://34.123.128.240/ui/
