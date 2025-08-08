@@ -122,7 +122,6 @@ Ingress Manifest
 
 Logging & Monitoring
     Application logs are printed to stdout (captured by Kubernetes/GKE logging stack)
-    Add Prometheus or Cloud Monitoring instrumentation as needed
 
 Website Access
     The application can be accessed and tested on the specific url: http://34.123.128.240/ui/
